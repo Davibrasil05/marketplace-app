@@ -9,11 +9,29 @@ interface AppInputControllerProps<T extends FieldValues>
 
 }
 export const AppInputController =<T extends FieldValues
-> ({name, control, errors}:AppInputControllerProps<T>) => {
+> ({
+    name, 
+    control, 
+    errors,
+    ...rest
+}:AppInputControllerProps<T>) => {
     return (
     <Controller 
         name={name} 
         control={control} 
-        render={() => <AppInput/>}
+        render={({
+            field: {onBlur, onChange, value},
+            fieldState: {error},
+            formState: {isSubmitting, }
+        }) => (
+        <AppInput 
+            onChangeText={onChange} 
+            value={value} 
+            onBlur={onBlur} 
+            error={error?.message}
+            isDisabled={isSubmitting || rest.isDisabled}
+            {...rest}
         />
+        )}
+    />
     )}
