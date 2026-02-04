@@ -35,8 +35,9 @@ export const SelectionModal: FC<SelectionModalProps> = ({
 
             </View>
             <View className="gap-3">
-                {options.map((option) => (
+                {options.map((option, index) => (
                     <TouchableOpacity 
+                    key={`selection-item-${index}`}
                     onPress={option.onPress}
                     className={getButtonClass(option.variant ?? "primary")}>
                         {option.icon && (<Ionicons name={option.icon} size={20} color={colors.white} className="mr-2"/>)}
