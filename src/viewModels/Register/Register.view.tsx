@@ -7,6 +7,7 @@ import { AppInputController } from "../../shared/components/AppInputController"
 import { AuthFormHeader } from "../../shared/components/AuthFormHeader"
 import { router } from "expo-router"
 import { KeyboardContainer } from "../../shared/components/KeyboardContainer/index."
+import { AppButton } from "../../shared/components/AppButton"
 
 export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
 > = ({
@@ -61,12 +62,18 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
                     name="confirmPassword"
                     secureTextEntry
                 />
-                <TouchableOpacity onPress={onSubmit}>"
-                    <Text>Register</Text>
-                </TouchableOpacity> 
-                <TouchableOpacity onPress={() => router.push("/login")}>"
-                    <Text>Login</Text>
-                </TouchableOpacity> 
+                <AppButton  onPress={onSubmit}>
+                    Registrar
+                </AppButton>
+                <View className='mt-16'>
+                    <Text className='text-base text-gray-400 mb-6'>
+                        Ainda não tem uma conta?
+                    </Text>
+                    <AppButton  onPress={() => router.push('/login')}>
+                        Login
+                    </AppButton>
+
+                </View>
             </ScrollView>
         </KeyboardContainer>
 

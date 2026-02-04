@@ -6,6 +6,7 @@ import { KeyboardContainer } from "../../../shared/components/KeyboardContainer/
 import { FC } from "react"
 import { useLoginViewModel } from "./useLogin.viewModel."
 import { AppInputController } from "../../../shared/components/AppInputController"
+import { AppButton } from "../../../shared/components/AppButton"
 
 export const LoginView: FC<ReturnType<typeof useLoginViewModel>>= ({
     
@@ -15,6 +16,7 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>>= ({
     return (
         <KeyboardContainer>
             <View className="flex-1 justify-center items-center px-[40px]">
+                <View className="flex-1 w-full items-center ">
                 <AuthFormHeader 
                 title="Acesse sua conta" 
                 subTitle="Informe seu e-mail e senha para entrar"/>
@@ -35,11 +37,29 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>>= ({
                     secureTextEntry
                 />
 
-                <TouchableOpacity onPress={() => router.push('/register')}>
-                    <Text>
-                        Registro
-                    </Text>
-                </TouchableOpacity>
+              
+
+                <AppButton 
+                 className="mt-6"
+                 rightIcon="arrow-forward" 
+                 children="Login"
+                 onPress={() => router.push('/home')} 
+                />
+
+                </View>
+                <View className='flex-2 pb-16' >
+                <Text className="text-base text-gray-300 mb-6">Já tem uma conta?</Text>
+                 <AppButton 
+                  variant='outlined'
+                  rightIcon="arrow-forward" 
+                  children="Cadastrar" 
+                  onPress={() => router.push('/register')} 
+                 />
+
+                </View>
+
+                
+      
             </View>
         </KeyboardContainer>
     )
