@@ -8,11 +8,13 @@ import { AuthFormHeader } from "../../shared/components/AuthFormHeader"
 import { router } from "expo-router"
 import { KeyboardContainer } from "../../shared/components/KeyboardContainer/index."
 import { AppButton } from "../../shared/components/AppButton"
+import {Ionicons} from '@expo/vector-icons'
 
 export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
 > = ({
     onSubmit,
-    control
+    control,
+    handleSelectAvatar,
 }) => {
 
     const [email,setEmail] =useState("");
@@ -24,6 +26,9 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
                     title="Crie sua conta" 
                     subTitle="Informe seus dados pessoais e de acesso"
                 />
+                <TouchableOpacity onPress={handleSelectAvatar}>
+                    <Ionicons name ="cloud-upload-outline" size={32}/>
+                </TouchableOpacity>
                 <AppInputController 
                     placeholder="Seu Nome"
                     leftIcon="person-outline" 
@@ -69,7 +74,7 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
                     <Text className='text-base text-gray-400 mb-6'>
                         Ainda não tem uma conta?
                     </Text>
-                    <AppButton  onPress={() => router.push('/login')}>
+                    <AppButton variant='outlined' onPress={() => router.push('/login')}>
                         Login
                     </AppButton>
 
