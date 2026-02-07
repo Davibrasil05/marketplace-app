@@ -22,7 +22,7 @@ export const AppButton: FC<AppButtonProps> = ({
     ...rest
 }) => {
 
-    const contentColor = variant === 'field' ? colors.white : colors['blue-base'] 
+    const contentColor = variant === 'field' ? colors.white : colors['purple-base'] 
     const styles = buttonVariants({
         hasIcon: !!leftIcon || !!rightIcon,
         isDisabled,

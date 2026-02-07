@@ -1,4 +1,4 @@
-import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
 import { useRegisterViewModel } from "./useRegister.viewModel"
 import { FC, useState } from "react"
 import { AppInput } from "../../shared/components/AppInput"
@@ -15,6 +15,7 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
     onSubmit,
     control,
     handleSelectAvatar,
+    avatarUri
 }) => {
 
     const [email,setEmail] =useState("");
@@ -26,8 +27,23 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>
                     title="Crie sua conta" 
                     subTitle="Informe seus dados pessoais e de acesso"
                 />
-                <TouchableOpacity onPress={handleSelectAvatar}>
-                    <Ionicons name ="cloud-upload-outline" size={32}/>
+                <TouchableOpacity 
+                    className="w-[120px] h-[120px] rounded-[12px] items-center justify-center bg-shape self-center mb-8" 
+                    onPress={handleSelectAvatar}
+                >
+                    { avatarUri ? (
+                        <Image 
+                         className="w-full h-full rounded-[12px]" 
+                         source={{uri: avatarUri}}
+                         resizeMode="cover"
+                        />
+                        
+                    ) : (
+
+                        <Ionicons name ="cloud-upload-outline" size={32}/>
+                    )
+                    
+                    }
                 </TouchableOpacity>
                 <AppInputController 
                     placeholder="Seu Nome"
