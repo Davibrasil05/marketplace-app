@@ -37,10 +37,11 @@ export const useUserStore = create<UserStore>()(persist((set) => ({
     }),
     setSession: (sessionData) => {set({...sessionData})},
     updateTokens: (updateTokenData) =>  set ({ ...updateTokenData}),
-    updateUser: (updatedUserData) => 
+    updateUser: (updatedUserData) => {
         set((state) => ({
         user: state.user ? {...state.user, ...updatedUserData} : null,
     }))
+    },
 
     }),
     {

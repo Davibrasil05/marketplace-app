@@ -13,8 +13,7 @@ export const useRegisterMutation = ({
 
     const {setSession} = useUserStore()
     const mutation = useMutation({
-        mutationFn: (userData: RegisterHttpParams) =>
-             authService.register(userData),
+        mutationFn: (userData: RegisterHttpParams) => authService.register(userData),
         onSuccess: (response) => {
             setSession({
                 refreshToken: response.refreshToken,

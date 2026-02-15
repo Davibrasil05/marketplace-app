@@ -1,12 +1,12 @@
 import { Text, TouchableOpacity, View } from "react-native"
-import { AuthFormHeader } from "../../../shared/components/AuthFormHeader"
-import { AppInput } from "../../../shared/components/AppInput"
+import { AuthFormHeader } from "../../shared/components/AuthFormHeader"
+import { AppInput } from "../../shared/components/AppInput"
 import { router } from "expo-router"
-import { KeyboardContainer } from "../../../shared/components/KeyboardContainer/index."
+import { KeyboardContainer } from "../../shared/components/KeyboardContainer/index."
 import { FC } from "react"
 import { useLoginViewModel } from "./useLogin.viewModel."
-import { AppInputController } from "../../../shared/components/AppInputController"
-import { AppButton } from "../../../shared/components/AppButton"
+import { AppInputController } from "../../shared/components/AppInputController"
+import { AppButton } from "../../shared/components/AppButton"
 
 export const LoginView: FC<ReturnType<typeof useLoginViewModel>>= ({
     
@@ -53,7 +53,7 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>>= ({
                   variant='outlined'
                   rightIcon="arrow-forward" 
                   children="Cadastrar" 
-                  onPress={() => router.push('/register')} 
+                  onPress={() => router.push('/(public)/register')} 
                  />
 
                 </View>

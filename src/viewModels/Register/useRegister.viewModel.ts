@@ -10,15 +10,15 @@ import { useUploadAvatarMutation } from '../../shared/queries/auth/use-upload-av
 
 
 export const useRegisterViewModel = () => {
-  const {setSession, updateUser} = useUserStore()
-  
+  const { updateUser } = useUserStore()
+
   const [avatarUri, setAvatarUri] = useState<string | null>(null)
-  const {handleSelectImage} = useImage({
-    callback: setAvatarUri, 
+  const { handleSelectImage } = useImage({
+    callback: setAvatarUri,
     cameraType: CameraType.front
   })
-  
-  
+
+
   const handleSelectAvatar = async () => {
     await handleSelectImage()
   }
@@ -29,34 +29,35 @@ export const useRegisterViewModel = () => {
   } = useForm<RegisterFormData>({
     resolver: yupResolver(registerScheme),
     defaultValues: {
-      name: 'teste65',
-      email: 'teste10000@gmail.com',
-      password: '123123123',
-      confirmPassword: '123123123',
-      phone: '11111111111',
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      phone: '',
     },
   })
-  
+  console.log(avatarUri)
   const uploadAvatarMutation = useUploadAvatarMutation()
+
   const userRegisterMutation = useRegisterMutation({
     onSuccess: async () => {
-      if(avatarUri) {
-        const {url} = await uploadAvatarMutation.mutateAsync(avatarUri)
-        console.log(url)
-        updateUser({avatarUrl: url})
+      if (avatarUri) {
+        const { url } = await uploadAvatarMutation.mutateAsync(avatarUri)
+        console.log({ url })
+        updateUser({ avatarUrl: url })
 
       }
 
-    }
+    },
   })
   const onSubmit = handleSubmit(async (userData) => {
     console.log(userData)
     const { confirmPassword, ...registerData } = userData
-    
 
-    
+
+    await userRegisterMutation.mutateAsync(registerData)
   })
-  
+
   return {
     userRegisterMutation,
     control,

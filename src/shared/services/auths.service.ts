@@ -34,6 +34,14 @@ export const uploadAvatar = async (avatarUri: string) => {
   const { data } = await marketPlaceApiClient.post<UploadAvatarResponse>(
     '/user/avatar',
     formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      transformRequest: (data) => {
+        return data
+      },
+    },
   )
 
   data.url = `${baseURL}${data.url}`
