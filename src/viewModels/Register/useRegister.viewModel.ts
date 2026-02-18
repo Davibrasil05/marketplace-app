@@ -36,14 +36,13 @@ export const useRegisterViewModel = () => {
       phone: '',
     },
   })
-  console.log(avatarUri)
+
   const uploadAvatarMutation = useUploadAvatarMutation()
 
   const userRegisterMutation = useRegisterMutation({
     onSuccess: async () => {
       if (avatarUri) {
         const { url } = await uploadAvatarMutation.mutateAsync(avatarUri)
-        console.log({ url })
         updateUser({ avatarUrl: url })
 
       }
@@ -51,7 +50,6 @@ export const useRegisterViewModel = () => {
     },
   })
   const onSubmit = handleSubmit(async (userData) => {
-    console.log(userData)
     const { confirmPassword, ...registerData } = userData
 
 

@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native"
-import { ProductInterface } from "../../../../shared/interfaces/http/product"
+
 import { FC } from "react"
 import { useProductCardViewModel } from "./useProductCard.viewModel"
 import {Ionicons} from "@expo/vector-icons"
@@ -14,7 +14,7 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
           className="w-full h-[96px] rounded-[6px]" 
           resizeMode="cover"
         />
-        <View  className="absolute top-0 right-0 fledx-row items-center px-2 py-1 rounded-b-lg rounded-r-none bg-white">
+        <View  className="absolute top-0 right-0 flex-row items-center px-2 py-1 rounded-b-lg rounded-r-none bg-white">
           <Ionicons name="star" size={12} color={colors["blue-base"]}/>
           <Text className="text-sm font-semibold ml-1">
             {product.ratingCount}
@@ -27,7 +27,7 @@ export const ProductCardView: FC<ReturnType<typeof useProductCardViewModel>> = (
         </Text>
         <View className="flex-row items-center justify-between">
           <Text>
-            R${product.value}
+            {product.value}
           </Text>
         </View>
       </View>

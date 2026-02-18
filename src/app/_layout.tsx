@@ -12,7 +12,6 @@ const queryClient = new QueryClient()
 export default function RootLayout() {
 
     const {token} = useUserStore()
-    console.log(token)
 
     return (
         <QueryClientProvider client={queryClient}>

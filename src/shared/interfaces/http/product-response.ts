@@ -1,4 +1,4 @@
-import { ProductInterface } from "./product"
+import { ProductInterface } from "../product"
 
 export interface ProductResponse {
     page: number

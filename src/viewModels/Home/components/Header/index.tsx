@@ -17,6 +17,7 @@ export const HomeHeader = () => {
               className="w-[56px] h-[56px] rounded-[12px] border-shape"
             />
             ) : (
+            
                 <View className="w-[56px] h-[56px] items-center bg-shape border-gray-200 justify-center border-gray-200">
                   <Ionicons name='person' size={24} color={colors.grays["300"]}/>
                 </View>

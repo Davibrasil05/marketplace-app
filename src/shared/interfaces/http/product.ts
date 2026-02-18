@@ -1,27 +1,19 @@
-export interface ProductCategory{
-    id: number,
-    name: string
-
+export interface ProductRequest {
+    
+  pagination: {
+    page: number,
+    perPage: number
+  },
+  filters?: {
+    from: Date,
+    to: Date,
+    categoryIds: number[]
+    
+    searchText: string,
+    minValue: number,
+    maxValue: number
+  },
+  sort?: {
+    averageRating: string
+  }
 }
-
-
-export interface ProductInterface
-{
-    id: number,
-    value: string,
-    name: string,
-    description: string,
-    photo: string,
-    height: string,
-    width: string,
-    weight: string,
-    averageRating: number,
-    views: number,
-    ratingCount: number,
-    categoryId: number,
-    category: ProductCategory,
-    createdAt: string,
-    updatedAt: string,
-    deletedAt: string
-}
-
