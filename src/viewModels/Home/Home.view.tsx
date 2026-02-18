@@ -10,7 +10,7 @@ export const HomeView = () => {
   const productsList: ProductInterface[] = [
       {
         id: 1,
-        value: "oi",
+        value: "3500",
         name: "Davi",
         description: "descrição",
         photo: "foto",

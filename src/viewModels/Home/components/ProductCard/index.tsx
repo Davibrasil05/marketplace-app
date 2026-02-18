@@ -1,15 +1,16 @@
 import { Text, View } from "react-native"
 import { ProductInterface } from "../../../../shared/interfaces/http/product"
 import { FC } from "react"
+import { ProductCardView } from "./ProductCard.view"
+import { useProductCardViewModel } from "./useProductCard.viewModel"
 
 interface ProductCardParams {
-    product: ProductInterface
+  product: ProductInterface
 }
 
-export const ProductCard: FC<ProductCardParams> = ({product}) => {
+export const ProductCard: FC<ProductCardParams> = (props) => {
+  const viewModel = useProductCardViewModel(props)
   return (
-    <View>
-      <Text>{product.id}</Text>
-    </View>
+    <ProductCardView {...viewModel}/>
   )
 }
