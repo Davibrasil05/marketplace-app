@@ -25,6 +25,10 @@ export const useHomeViewModel = () => {
     await refetch()
   }
 
+  const handleReached = () => {
+    handleLoadMore()
+  }
+
   console.log(JSON.stringify(products, null, 2))
 
 
@@ -32,6 +36,11 @@ export const useHomeViewModel = () => {
   return{
     handleLoadMore,
     handleRefresh,
-    products
+    handleReached,
+    products,
+    isLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    isRefetching
 }
 }

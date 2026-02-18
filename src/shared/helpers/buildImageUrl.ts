@@ -1,7 +1,9 @@
 import Constants from 'expo-constants'
 import { Platform } from 'react-native'
 
-export const BuildImageUrl = (originalUrl: string) => {
+export const BuildImageUrl = (originalUrl?: string) => {
+  if(!originalUrl) return ''
+
   if(Boolean(Constants.expoConfig?.extra?.isProduction)){
     return originalUrl
   }
@@ -9,5 +11,5 @@ export const BuildImageUrl = (originalUrl: string) => {
   return Platform.select({
     android: originalUrl.replace("localhost", "10.0.2.2"),
     ios: originalUrl
-  })
+  }) ?? ''
 }

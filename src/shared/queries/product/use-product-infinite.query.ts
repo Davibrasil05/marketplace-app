@@ -33,7 +33,8 @@ export const useProductInfiniteQuery = () => {
       : undefined
     },
     initialPageParam: 1,
-    queryKey: ['products']
+    queryKey: ['products'],
+    staleTime: 1000*60*1, //Tempo dos itens armazenados em cache
   })
 
   const products = data?.pages.flatMap((page) => page.data).map((product) => ({
@@ -49,6 +50,6 @@ export const useProductInfiniteQuery = () => {
     isFetchingNextPage, 
     isLoading, 
     refetch, 
-    isRefetching
+    isRefetching,
   }
 }
