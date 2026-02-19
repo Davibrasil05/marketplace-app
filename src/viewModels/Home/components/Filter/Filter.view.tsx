@@ -5,9 +5,10 @@ import {Ionicons} from "@expo/vector-icons"
 import { colors } from "../../../../styles/colors"
 import { AppInput } from "../../../../shared/components/AppInput"
 import { AppButton } from "../../../../shared/components/AppButton"
-
+import CheckBox from 'expo-checkbox'
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
-
+  productsCategory,
+  isLoading
 }) => {
   return (
     <View>
@@ -44,6 +45,27 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
         <Text className="font-semibold text-base text-gray-500">
           CATEGORIA
         </Text>
+
+        {
+          isLoading ? (
+            <Text>Carregando categorias...</Text>
+          ) : (
+              <View className="mb-6 gap-3">
+              
+              {
+                  productsCategory?.map(({name, id}) => (
+                      <TouchableOpacity  className="flex-row items-center py-2"key={`product-category-${id}`}>
+                      <CheckBox
+                        color={colors['purple-base']}
+                        className="mr-3 rounded-full"
+                      />
+                      <Text className="text-base text-gray-400">{name}</Text>
+                      </TouchableOpacity>
+                    ))
+                }
+                </View>
+            )
+        }
 
         <View className="flex-row gap-3 mt-4 mb-6">
           <View className="flex-1">
