@@ -1,13 +1,15 @@
+import { useBottomSheet } from "@gorhom/bottom-sheet"
 import { useGetProductCategoriesQuery } from "../../../../shared/queries/product/use-get-product-categories"
 import { useUserFilterStore } from "../../../../shared/store/use-filter-store"
+import { useBottomSheetStore } from "../../../../shared/store/bottomsheet-store"
 
 export const useFilterViewModel = () => {
   const {data: ProductCategory,
     isLoading,
   } = useGetProductCategoriesQuery()
 
-  const {updateFilter, filterState} = useUserFilterStore()
-
+  const {updateFilter, filterState, applyFilters, appliedFilterState, resetFilter} = useUserFilterStore()
+  const {close} = useBottomSheetStore()
   const handleValueMaxChange = (value: number) => {
     updateFilter({key: "valueMax", value})
   }
@@ -32,6 +34,15 @@ export const useFilterViewModel = () => {
       }
   }
 
+  const handleApplyFilters = () => {
+    applyFilters()
+    close()
+  }
+
+  const handleResetFilter =() => {
+    close()
+    resetFilter()
+  }
 
   
   return {
@@ -40,6 +51,8 @@ export const useFilterViewModel = () => {
     handleCategoryToggle,
     handleValueMaxChange,
     handleValueMinChange,
+    handleApplyFilters,
+    handleResetFilter,
     selectedCategories: filterState.selectedCategories
     }
 }

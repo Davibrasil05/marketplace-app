@@ -1,8 +1,11 @@
 import { ref } from "yup"
 import { useProductInfiniteQuery } from "../../shared/queries/product/use-product-infinite.query"
+import { useUserFilterStore } from "../../shared/store/use-filter-store"
 
 export const useHomeViewModel = () => {
 
+
+  const {applyFilters} = useUserFilterStore()
   const {
     products,
     error,
