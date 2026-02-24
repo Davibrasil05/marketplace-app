@@ -8,7 +8,8 @@ export interface FilterState {
 }
 
 interface FilterStore {
-  appliedFIlterState: FilterState
+  appliedFilterState: FilterState
+  filterState: FilterState
 
   updateFilter: (props: {
     key: keyof FilterState,
@@ -17,6 +18,7 @@ interface FilterStore {
     }) => void
 
   resetFilter: () => void
+  applyFilters: () => void
   
 }
 
@@ -28,17 +30,22 @@ const defaultFilterValues = {
 }
 
 export const useUserFilterStore = create<FilterStore>((set) => ({
-  appliedFIlterState: defaultFilterValues,
+  appliedFilterState: defaultFilterValues,
+  filterState: defaultFilterValues,
 
   updateFilter: ({key, value}) => {
     set((state) => ({
-      appliedFIlterState: {...state.appliedFIlterState, [key]: value}
+      filterState: {...state.filterState, [key]: value}
 
     }))
   },
 
   resetFilter: () => set({
-    appliedFIlterState: defaultFilterValues,
-  })
+    appliedFilterState: defaultFilterValues,
+    filterState: defaultFilterValues,
+  }),
+  applyFilters: () => set((state) => ({
+    appliedFilterState: state.filterState
+  }))
   
 }))

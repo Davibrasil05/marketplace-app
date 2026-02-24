@@ -8,7 +8,11 @@ import { AppButton } from "../../../../shared/components/AppButton"
 import CheckBox from 'expo-checkbox'
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
   productsCategory,
-  isLoading
+  isLoading,
+  selectedCategories,
+  handleCategoryToggle,
+  handleValueMaxChange,
+  handleValueMinChange
 }) => {
   return (
     <View>
@@ -28,6 +32,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
         <View className="flex-row mb-4 w-[100%]">
           <View className="flex-1">
             <AppInput 
+              onChangeText={(text) => handleValueMinChange(Number(text))}
               placeholder="De" 
               keyboardType="numeric" 
               containerClassName="w-[90%]"
@@ -35,6 +40,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
           </View>
           <View className="flex-1">
             <AppInput 
+              onChangeText={(text) => handleValueMaxChange(Number(text))}
               placeholder="Até" 
               keyboardType="numeric" 
               containerClassName="w-[90%]"
@@ -54,8 +60,14 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
               
               {
                   productsCategory?.map(({name, id}) => (
-                      <TouchableOpacity  className="flex-row items-center py-2"key={`product-category-${id}`}>
+                      <TouchableOpacity  
+                        onPress={() => handleCategoryToggle(id)}
+                        className="flex-row items-center py-2"
+                        key={`product-category-${id}`
+                      }>
                       <CheckBox
+                        value={selectedCategories.includes(id)}
+                        onValueChange={() => handleCategoryToggle(id)}
                         color={colors['purple-base']}
                         className="mr-3 rounded-full"
                       />
@@ -75,7 +87,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
           </View>
           <View className="flex-1">
             <AppButton>
-                Limpar Filtro
+                Filtrar
             </AppButton>
           </View>
         </View>
